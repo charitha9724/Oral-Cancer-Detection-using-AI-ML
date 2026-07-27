@@ -1,6 +1,6 @@
 # Oral Cancer Detection Using AI
 
-A comparative ML/DL study benchmarking **9 tabular models** (CatBoost, TabNet, XGBoost, LightGBM, Random Forest, SVM, Stacking, Logistic Regression, MLP) on real clinical data to determine which model and data modality best detects oral cancer early.
+A comparative ML/DL study benchmarking **9 tabular models** (CatBoost, TabNet, XGBoost, LightGBM, Random Forest, SVM, Stacking, Logistic Regression, MLP) on real clinical data to determine which model best detects oral cancer early.
 ---
 
 ## What It Does
