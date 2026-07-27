@@ -1,6 +1,6 @@
 # Oral Cancer Detection Using AI
 
-A comparative ML/DL study benchmarking **9 tabular models** (CatBoost, TabNet, XGBoost, LightGBM, Random Forest, SVM, Stacking, Logistic Regression, MLP) and **4 CNNs** (EfficientNetB0, ResNet50, VGG16, MobileNetV2) on real clinical data to determine which model and data modality best detects oral cancer early.
+A comparative ML/DL study benchmarking **9 tabular models** (CatBoost, TabNet, XGBoost, LightGBM, Random Forest, SVM, Stacking, Logistic Regression, MLP) on real clinical data to determine which model and data modality best detects oral cancer early.
 ---
 
 ## What It Does
@@ -17,32 +17,32 @@ Oral Squamous Cell Carcinoma (OSCC) has an 80%+ survival rate when caught early,
 ## Architecture
 
 ```
-Tabular Pipeline (COMPLETE)                    Image Pipeline (PENDING — GPU)
-─────────────────────────────                  ──────────────────────────────
-Raw CSV (237 patients)                          950 images (zip)
-     │                                               │
-     ▼                                               ▼
-Leakage-column removal                          Extraction + integrity check
-     │                                               │
-     ▼                                               ▼
-Ordinal/binary encode + mode impute             Resize 224×224, normalize
-     │                                               │
-     ▼                                               ▼
-One-hot encode (localization, skin color)       Augment (train only): flip,
-     │                                          rotation, zoom, brightness
-     ▼                                               │
-80/20 stratified split                               ▼
-     │                                          80/20 stratified split
-     ▼                                               │
-StandardScaler (fit on train only)                   ▼
-     │                                          4 pretrained CNNs, fine-tuned
-     ▼                                          (frozen base + Dense head)
-9 models × 5-fold CV + holdout eval                  │
-     │                                               ▼
-     ▼                                          Grad-CAM on best model
+Tabular Pipeline (COMPLETE)                    
+─────────────────────────────                  
+Raw CSV (237 patients)                          
+     │                                               
+     ▼                                               
+Leakage-column removal                          
+     │                                            
+     ▼                                             
+Ordinal/binary encode + mode impute             
+     │                                               
+     ▼                                               
+One-hot encode (localization, skin color)       
+     │                                          
+     ▼                                               
+80/20 stratified split                               
+     │                                          
+     ▼                                               
+StandardScaler (fit on train only)                   
+     │                                          
+     ▼                                         
+9 models × 5-fold CV + holdout eval                  
+     │                                               
+     ▼                                          
 Statistical tests + SHAP explainability
-     │                                               │
-     └──────────────► Cross-Modality Comparison ◄────┘
+     │                                               
+Comparison 
 ```
 
 ---
@@ -128,5 +128,3 @@ cd oral-cancer-detection
 pip install -r requirements.txt
 jupyter notebook oral_cancer_tabular.ipynb   # full tabular pipeline, runs on CPU
 ```
-
-Image pipeline (`image_preprocessing.py` + CNN training) is designed to run on Kaggle for free GPU (P100/T4) — upload `images.zip` and the notebook, then run.
