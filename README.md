@@ -1,10 +1,6 @@
-# Oral Cancer Detection Using AI: Tabular vs Image Modalities
+# Oral Cancer Detection Using AI
 
 A comparative ML/DL study benchmarking **9 tabular models** (CatBoost, TabNet, XGBoost, LightGBM, Random Forest, SVM, Stacking, Logistic Regression, MLP) and **4 CNNs** (EfficientNetB0, ResNet50, VGG16, MobileNetV2) on real clinical data to determine which model and data modality best detects oral cancer early.
-
-- **GitHub**: [Add repo link]
-- **Paper/Report**: [Add link, if available]
-
 ---
 
 ## What It Does
